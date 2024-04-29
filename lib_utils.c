@@ -3,6 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lib_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: mneves-l <mneves-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:50:59 by mneves-l          #+#    #+#             */
@@ -11,6 +12,15 @@
 /* ************************************************************************** */
 
 
+=======
+/*   By: gcatarin <gcatarin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 19:50:59 by mneves-l          #+#    #+#             */
+/*   Updated: 2024/04/29 17:21:02 by gcatarin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+>>>>>>> 3862364 (limpeza do codigo)
 #include "cubed.h"
 
 int	ft_strcmp(char *s1, char *s2)
@@ -49,5 +59,9 @@ void	ft_putendl_fd(char *s, int fd)
 void	error(char *s)
 {
 	ft_putendl_fd(s, 2);
+<<<<<<< HEAD
 	exit(EXIT_FAILURE);
+=======
+	exit(1);
+>>>>>>> 3862364 (limpeza do codigo)
 }
