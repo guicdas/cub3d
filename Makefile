@@ -1,25 +1,14 @@
-<<<<<<< HEAD
-NAME = cub3d
-CC = cc
-FLAGS = -Wall -Werror -Wextra -g
-MLXFLAGS	=	-L ./minilibx -lmlx -Ilmlx -lXext -lX11
-MINILIBX_PATH	=	./minilibx
-MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
-SRC = main.c get_next_line.c lib_utils.c parsing_dir.c parsing_map.c
-
-OBJ = $(SRC:%.c=%.o)
-=======
 NAME			= cub3d
 CC				= cc
-FLAGS			= -Wall -Werror -Wextra
-MLXFLAGS		= -Lminilibx-linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz #-lminilibx-linux
-MINILIBX_PATH	= ./minilibx-linux
+FLAGS			= -Wall -Werror -Wextra -fsanitize=address
+MLXFLAGS		= minilibx-linux/libmlx.a -lXext -lX11 -lm
+MINILIBX_PATH	= minilibx-linux
 MINILIBX		= $(MINILIBX_PATH)/libmlx.a
-SRC				= main.c get_next_line.c lib_utils.c parsing_dir.c parsing_map.c \
-				utils.c
-
+SRC				= srcs/2drays.c srcs/get_next_line.c srcs/leave.c srcs/lib_utils.c \
+				srcs/main.c srcs/moves.c srcs/parsing_dir.c srcs/parsing_map.c srcs/utils.c \
+				srcs/rays.c
+INCLUDES		=
 OBJ				= $(SRC:%.c=%.o)
->>>>>>> 3862364 (limpeza do codigo)
 
 ###################COLOR CODES#############################
 
@@ -37,27 +26,22 @@ GREY 		= \033[0;37m
 
 ###########################################################
 
-all: ${NAME}
+all: minilibx ${NAME}
+
+minilibx:
+	make -C minilibx-linux/
 
 ${NAME}: $(OBJ)
-	$(MAKE) --no-print-directory -C $(MINILIBX_PATH)
-<<<<<<< HEAD
-	$(CC) $(FLAGS) -lm $(SRC) $(MLXFLAGS) -o $(NAME)
-	@rm *.o
-=======
-	$(CC) $(FLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
->>>>>>> 3862364 (limpeza do codigo)
+	@$(MAKE) --no-print-directory -C $(MINILIBX_PATH)
 	@clear
+	$(CC) $(FLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Compilation of ${CLR_RMV}${CYAN}$(NAME) ${CLR_RMV}$(GREEN)"
 	@echo "$(CYAN)$(NAME) ${CLR_RMV}$(GREEN)created with sucess ${CLR_RMV} "
 
-<<<<<<< HEAD
-=======
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Iminilibx-linux -O3 -c $< -o $@
+	$(CC) $(FLAGS) -c $^ -o $@ 
 
->>>>>>> 3862364 (limpeza do codigo)
-clean:
+clean:	
 	@rm -rf $(OBJ)
 	@echo "$(RED)Deleting $(PURPLE)-> $(YELLOW)$(NAME) $(CLR_RMV)$(RED)[objs]$(GREEN) ${CLR_RMV}"
 
@@ -67,10 +51,6 @@ fclean: clean
 re: fclean all
 
 run: re
-<<<<<<< HEAD
-	@./cub3d
-=======
 	@./cub3d maps/mapvalid.cub
->>>>>>> 3862364 (limpeza do codigo)
 
 .PHONY: all clean fclean re run

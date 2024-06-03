@@ -26,8 +26,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include <iostream>
 
-#include "quickcg.h"
-using namespace QuickCG;
 
 /*
 g++ *.cpp -lSDL -O3 -W -Wall -ansi -pedantic
